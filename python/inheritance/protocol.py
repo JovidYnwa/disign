@@ -1,16 +1,14 @@
-from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import datetime
+from typing import Protocol
 
 
-class Viechle(ABC):
-    @abstractmethod
+class Viechle(Protocol):
     def reserve(self, start_date: datetime, end_date: datetime) -> str:
-        pass
+        ...
 
-    @abstractmethod
     def renew_licence(self, start_date: datetime, end_date: datetime) -> str:
-        pass
+        ...
 
 
 @dataclass
@@ -23,6 +21,7 @@ class Car(Viechle):
 
     def renew_licence(self, start_date: datetime, end_date: datetime) -> str:
         return f"Car model {self.model} renewed till {end_date}"
+
 
 @dataclass
 class Truk(Viechle):
